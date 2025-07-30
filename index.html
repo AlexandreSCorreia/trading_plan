@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Trading: $10 para $1.000+ em 22 Dias</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .strategy-overview {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #007bff;
+        }
+        
+        .strategy-overview h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .strategy-overview h2::before {
+            content: '🎯';
+            margin-right: 10px;
+        }
+        
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-top: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+        }
+        
+        .phase1 { border-top-color: #e74c3c; }
+        .phase2 { border-top-color: #f39c12; }
+        .phase3 { border-top-color: #27ae60; }
+        
+        .phase h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .phase1 h3::before { content: '🔥'; margin-right: 8px; }
+        .phase2 h3::before { content: '⚖️'; margin-right: 8px; }
+        .phase3 h3::before { content: '🛡️'; margin-right: 8px; }
+        
+        .table-container {
+            margin: 30px 0;
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9em;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        
+        td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .phase-separator {
+            background: #dc3545 !important;
+            color: white !important;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .phase-separator.phase2-sep {
+            background: #fd7e14 !important;
+        }
+        
+        .phase-separator.phase3-sep {
+            background: #198754 !important;
+        }
+        
+        .result-highlight {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .tips-section {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .tips-section h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-section h3::before {
+            content: '💡';
+            margin-right: 10px;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .tips-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 1px solid #f5c6cb;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #dc3545;
+        }
+        
+        .warning-box h4 {
+            color: #721c24;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h4::before {
+            content: '⚠️';
+            margin-right: 10px;
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,123,255,0.4);
+        }
+        
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .print-btn { display: none; }
+            .phase { break-inside: avoid; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 4px; }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .content { padding: 20px; }
+            .phases { grid-template-columns: 1fr; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PLANO DE TRADING</h1>
+            <div class="subtitle">Crescimento de $10 para $1.000+ em 22 Dias</div>
+        </div>
+        
+        <div class="content">
+            <div class="strategy-overview">
+                <h2>Estratégia: "Agressiva → Moderada → Conservadora"</h2>
+                <p>Este plano utiliza uma abordagem híbrida que ajusta o risco e alavancagem conforme o capital cresce, maximizando oportunidades iniciais e preservando ganhos na fase final.</p>
+            </div>
+            
+            <div class="phases">
+                <div class="phase phase1">
+                    <h3>FASE 1 - Agressiva</h3>
+                    <p><strong>Dias 1 a 7:</strong> Construção Rápida</p>
+                    <ul>
+                        <li>Alta alavancagem (10x)</li>
+                        <li>Metas diárias de 25-30%</li>
+                        <li>Risco controlado de 8-15%</li>
+                        <li>1 operação por dia</li>
+                        <li>Foco em breakouts com volume</li>
+                    </ul>
+                </div>
+                
+                <div class="phase phase2">
+                    <h3>FASE 2 - Moderada</h3>
+                    <p><strong>Dias 8 a 15:</strong> Estabilização</p>
+                    <ul>
+                        <li>Alavancagem reduzida (4-5x)</li>
+                        <li>Metas de 15-20%</li>
+                        <li>Risco de 3-6%</li>
+                        <li>1-2 trades por dia</li>
+                        <li>Foco em consistência</li>
+                    </ul>
+                </div>
+                
+                <div class="phase phase3">
+                    <h3>FASE 3 - Conservadora</h3>
+                    <p><strong>Dias 16 a 22:</strong> Preservação</p>
+                    <ul>
+                        <li>Baixa alavancagem (2-3x)</li>
+                        <li>Metas de 10-12%</li>
+                        <li>Risco mínimo (1-2%)</li>
+                        <li>Alta probabilidade</li>
+                        <li>Explosão final no dia 22</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Capital Inicial</th>
+                            <th>Meta (%)</th>
+                            <th>Risco (%)</th>
+                            <th>Alavancagem</th>
+                            <th>Meta ($)</th>
+                            <th>Capital Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>$10,00</td><td>30%</td><td>15%</td><td>10x</td><td>$3,00</td><td>$13,00</td></tr>
+                        <tr><td>2</td><td>$13,00</td><td>30%</td><td>15%</td><td>10x</td><td>$3,90</td><td>$16,90</td></tr>
+                        <tr><td>3</td><td>$16,90</td><td>30%</td><td>15%</td><td>10x</td><td>$5,07</td><td>$21,97</td></tr>
+                        <tr><td>4</td><td>$21,97</td><td>30%</td><td>15%</td><td>10x</td><td>$6,59</td><td>$28,56</td></tr>
+                        <tr><td>5</td><td>$28,56</td><td>30%</td><td>10%</td><td>10x</td><td>$8,56</td><td>$37,12</td></tr>
+                        <tr><td>6</td><td>$37,12</td><td>25%</td><td>10%</td><td>8x</td><td>$9,28</td><td>$46,40</td></tr>
+                        <tr><td>7</td><td>$46,40</td><td>25%</td><td>8%</td><td>8x</td><td>$11,60</td><td>$58,00</td></tr>
+                        <tr class="phase-separator phase2-sep"><td colspan="7">FASE 2 - MODERADA (Dias 8-15)</td></tr>
+                        <tr><td>8</td><td>$58,00</td><td>20%</td><td>6%</td><td>5x</td><td>$11,60</td><td>$69,60</td></tr>
+                        <tr><td>9</td><td>$69,60</td><td>20%</td><td>5%</td><td>5x</td><td>$13,92</td><td>$83,52</td></tr>
+                        <tr><td>10</td><td>$83,52</td><td>20%</td><td>5%</td><td>5x</td><td>$16,70</td><td>$100,22</td></tr>
+                        <tr><td>11</td><td>$100,22</td><td>15%</td><td>4%</td><td>4x</td><td>$15,03</td><td>$115,25</td></tr>
+                        <tr><td>12</td><td>$115,25</td><td>15%</td><td>4%</td><td>4x</td><td>$17,28</td><td>$132,53</td></tr>
+                        <tr><td>13</td><td>$132,53</td><td>15%</td><td>3%</td><td>4x</td><td>$19,88</td><td>$152,41</td></tr>
+                        <tr><td>14</td><td>$152,41</td><td>15%</td><td>3%</td><td>4x</td><td>$22,86</td><td>$175,27</td></tr>
+                        <tr><td>15</td><td>$175,27</td><td>15%</td><td>3%</td><td>4x</td><td>$26,29</td><td>$201,56</td></tr>
+                        <tr class="phase-separator phase3-sep"><td colspan="7">FASE 3 - CONSERVADORA (Dias 16-22)</td></tr>
+                        <tr><td>16</td><td>$201,56</td><td>12%</td><td>2%</td><td>3x</td><td>$24,19</td><td>$225,75</td></tr>
+                        <tr><td>17</td><td>$225,75</td><td>12%</td><td>2%</td><td>3x</td><td>$27,09</td><td>$252,84</td></tr>
+                        <tr><td>18</td><td>$252,84</td><td>10%</td><td>2%</td><td>2x</td><td>$25,28</td><td>$278,12</td></tr>
+                        <tr><td>19</td><td>$278,12</td><td>10%</td><td>1,5%</td><td>2x</td><td>$27,81</td><td>$305,93</td></tr>
+                        <tr><td>20</td><td>$305,93</td><td>10%</td><td>1,5%</td><td>2x</td><td>$30,59</td><td>$336,52</td></tr>
+                        <tr><td>21</td><td>$336,52</td><td>10%</td><td>1%</td><td>2x</td><td>$33,65</td><td>$370,17</td></tr>
+                        <tr style="background: linear-gradient(135deg, #28a745, #20c997); color: white; font-weight: bold;"><td>22</td><td>$370,17</td><td>180%</td><td>5%</td><td>5x</td><td>$666,31</td><td><strong>$1.036,48</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="result-highlight">
+                🎯 <strong>RESULTADO ESTIMADO:</strong> De $10 → $1.036,48 em 22 dias
+            </div>
+            
+            <div class="warning-box">
+                <h4>Avisos Importantes</h4>
+                <p><strong>Este plano envolve alto risco e requer disciplina extrema.</strong> Trading com alavancagem pode resultar em perdas totais. Nunca invista mais do que pode perder e sempre use stops de segurança.</p>
+            </div>
+            
+            <div class="tips-section">
+                <h3>Estratégias Técnicas por Fase</h3>
+                
+                <h4 style="color: #e74c3c; margin: 20px 0 10px 0;">🔥 FASE 1 (Dias 1-7) - Agressiva</h4>
+                <ul class="tips-list">
+                    <li><strong>Setup:</strong> Breakout + RSI + Volume + Alavancagem 10x</li>
+                    <li>1 operação diária com risco fixo máximo de 15%</li>
+                    <li>Usar moedas com alta liquidez (BTC, ETH, SOL, OP)</li>
+                    <li>Foco em operações curtas com volatilidade</li>
+                </ul>
+                
+                <h4 style="color: #f39c12; margin: 20px 0 10px 0;">⚖️ FASE 2 (Dias 8-15) - Moderada</h4>
+                <ul class="tips-list">
+                    <li>Redução da alavancagem (máx. 4x a 5x)</li>
+                    <li>Stop mais técnico (estrutura ou ATR)</li>
+                    <li>1 a 2 trades por dia com risco até 4%</li>
+                    <li>Gerenciar emocional para não devolver ganhos</li>
+                </ul>
+                
+                <h4 style="color: #27ae60; margin: 20px 0 10px 0;">🛡️ FASE 3 (Dias 16-22) - Conservadora</h4>
+                <ul class="tips-list">
+                    <li>Foco em acertos de alta probabilidade</li>
+                    <li>Risco máximo: 1% a 2% por trade</li>
+                    <li>Proibido operar sem stop após $300+</li>
+                    <li>Explosão final no dia 22 (opcional, apenas com lucro)</li>
+                </ul>
+            </div>
+            
+            <div class="tips-section" style="background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); border-left-color: #17a2b8;">
+                <h3 style="color: #0c5460;">Dicas Finais para Sucesso</h3>
+                <ul class="tips-list">
+                    <li><strong>Use margem isolada SEMPRE</strong> para controlar risco</li>
+                    <li><strong>Verifique eventos macroeconômicos</strong> antes de operar</li>
+                    <li><strong>Use apenas setups validados</strong> - não invente no meio do plano</li>
+                    <li><strong>Se errar 2 dias seguidos:</strong> pausa, revisão e volta no dia seguinte</li>
+                    <li><strong>Faça saques parciais</strong> a partir de $300 para proteger capital</li>
+                    <li><strong>O objetivo é preservar lucro</strong> e respeitar rigorosamente o plano</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <button class="print-btn" onclick="window.print()">📄 Salvar PDF</button>
+    
+    <script>
+        // Adiciona animações suaves ao scroll
+        document.querySelectorAll('.phase').forEach(phase => {
+            phase.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            phase.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Destaca a linha atual da tabela
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('phase-separator')) {
+                    this.style.backgroundColor = '#e3f2fd';
+                    this.style.transform = 'scale(1.01)';
+                    this.style.transition = 'all 0.2s ease';
+                }
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('phase-separator')) {
+                    this.style.backgroundColor = '';
+                    this.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
